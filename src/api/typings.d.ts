@@ -156,6 +156,10 @@ declare namespace API {
     picScale?: number
     picSize?: number
     picWidth?: number
+    reviewMessage?: string
+    reviewStatus?: number
+    reviewTime?: string
+    reviewerId?: number
     tags?: string
     updateTime?: string
     url?: string
@@ -182,11 +186,21 @@ declare namespace API {
     picScale?: number
     picSize?: number
     picWidth?: number
+    reviewMessage?: string
+    reviewStatus?: number
+    reviewTime?: string
+    reviewerId?: number
     searchText?: string
     sortField?: string
     sortOrder?: string
     tags?: string[]
     userId?: number
+  }
+
+  type PictureReviewRequest = {
+    id?: number
+    reviewMessage?: string
+    reviewStatus?: number
   }
 
   type PictureTagCategory = {
@@ -200,6 +214,11 @@ declare namespace API {
     introduction?: string
     name?: string
     tags?: string[]
+  }
+
+  type PictureUploadRequest = {
+    fileUrl?: string
+    id?: number
   }
 
   type PictureVO = {
@@ -227,6 +246,7 @@ declare namespace API {
   }
 
   type uploadPictureUsingPOSTParams = {
+    fileUrl?: string
     id?: number
   }
 
