@@ -4,11 +4,14 @@
       <a-layout-header class="header">
         <GlobalHeader />
       </a-layout-header>
-      <a-layout-content class="content">
-        <router-view />
-      </a-layout-content>
+      <a-layout>
+        <GlobalSider class="sider" />
+        <a-layout-content class="content">
+          <router-view />
+        </a-layout-content>
+      </a-layout>
       <a-layout-footer class="footer">
-        <a href="https://space.bilibili.com/149356204?spm_id_from=333.1007.0.0" target="_blank">
+        <a href="https://github.com/QWQHF" target="_blank">
           hf
         </a>
       </a-layout-footer>
@@ -19,24 +22,35 @@
 <script lang="ts">
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import { defineComponent } from 'vue'
+import GlobalSider from '@/components/GlobalSider.vue'
 
 export default defineComponent({
-  components: { GlobalHeader },
+  components: { GlobalSider, GlobalHeader },
 })
 </script>
 
 <style scoped>
 #basicLayout .header {
   padding-inline: 20px;
-  background: #ffffff;
+  background: white;
   color: unset;
-  margin-bottom: 16px;
+  margin-bottom: 1px;
 }
 
 #basicLayout .content {
-  padding: 20px;
-  background: linear-gradient(to right, #fefefe, #ffffff);
-  margin-bottom: 28px;
+  background: white;
+  padding: 28px;
+}
+
+#basicLayout .sider {
+  background: #fff;
+  padding-top: 20px;
+  border-right: 0.5px solid #eee;
+}
+
+#basicLayout :deep(.ant-menu-root) {
+  border-bottom: none !important;
+  border-inline-end: none !important;
 }
 
 #basicLayout .footer {

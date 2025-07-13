@@ -14,8 +14,6 @@ export const useLoginUserStore = defineStore('loginUser', () => {
     }
   }
 
-
-
   function setLoginUser(newLoginUser: any) {
     loginUser.value = newLoginUser
   }

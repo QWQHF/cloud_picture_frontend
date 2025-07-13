@@ -64,5 +64,9 @@ const handleSubmit = async (values: any) => {
 </script>
 
 <style scoped>
-
+#addPictureBatchPage {
+  max-width: 800px;
+  margin: 0 auto;
+  align-content: center;
+}
 </style>

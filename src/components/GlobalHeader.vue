@@ -29,6 +29,12 @@
               </ASpace>
               <template #overlay>
                 <a-menu>
+                  <a-menu-item>
+                    <router-link to="/my_space">
+                      <UserOutlined />
+                      我的空间
+                    </router-link>
+                  </a-menu-item>
                   <a-menu-item @click="doLogout">
                     <LogOutlined />
                     退出登录
@@ -64,6 +70,11 @@ const originItems = [
     title: '主页',
   },
   {
+    key: '/add_picture',
+    label: '创建图片',
+    title: '创建图片',
+  },
+  {
     key: '/admin/userManage',
     label: '用户管理',
     title: '用户管理',
@@ -74,15 +85,15 @@ const originItems = [
     title: '图片管理',
   },
   {
+    key: '/admin/spaceManage',
+    label: '空间管理',
+    title: '空间管理',
+  },
+  {
     key: 'others',
     label: h('a', { href: 'https://www.codefather.cn', target: '_blank' }, '编程导航'),
     title: '编程导航',
   },
-  {
-    key: '/add_picture',
-    label: '创建图片',
-    title: '创建图片',
-  }
 ]
 
 // 过滤菜单项
