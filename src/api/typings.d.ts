@@ -2,126 +2,114 @@ declare namespace API {
   type BaseResponseBoolean_ = {
     code?: number
     data?: boolean
-    date?: boolean
     message?: string
   }
 
   type BaseResponseInt_ = {
     code?: number
     data?: number
-    date?: number
+    message?: string
+  }
+
+  type BaseResponseListImageSearchResult_ = {
+    code?: number
+    data?: ImageSearchResult[]
     message?: string
   }
 
   type BaseResponseListSpaceLevel_ = {
     code?: number
     data?: SpaceLevel[]
-    date?: SpaceLevel[]
     message?: string
   }
 
   type BaseResponseLoginUserVO_ = {
     code?: number
     data?: LoginUserVO
-    date?: LoginUserVO
     message?: string
   }
 
   type BaseResponseLong_ = {
     code?: number
     data?: number
-    date?: number
     message?: string
   }
 
   type BaseResponsePagePicture_ = {
     code?: number
     data?: PagePicture_
-    date?: PagePicture_
     message?: string
   }
 
   type BaseResponsePagePictureVO_ = {
     code?: number
     data?: PagePictureVO_
-    date?: PagePictureVO_
     message?: string
   }
 
   type BaseResponsePageSpace_ = {
     code?: number
     data?: PageSpace_
-    date?: PageSpace_
     message?: string
   }
 
   type BaseResponsePageSpaceVO_ = {
     code?: number
     data?: PageSpaceVO_
-    date?: PageSpaceVO_
     message?: string
   }
 
   type BaseResponsePageUserVO_ = {
     code?: number
     data?: PageUserVO_
-    date?: PageUserVO_
     message?: string
   }
 
   type BaseResponsePicture_ = {
     code?: number
     data?: Picture
-    date?: Picture
     message?: string
   }
 
   type BaseResponsePictureTagCategory_ = {
     code?: number
     data?: PictureTagCategory
-    date?: PictureTagCategory
     message?: string
   }
 
   type BaseResponsePictureVO_ = {
     code?: number
     data?: PictureVO
-    date?: PictureVO
     message?: string
   }
 
   type BaseResponseSpace_ = {
     code?: number
     data?: Space
-    date?: Space
     message?: string
   }
 
   type BaseResponseSpaceVO_ = {
     code?: number
     data?: SpaceVO
-    date?: SpaceVO
     message?: string
   }
 
   type BaseResponseString_ = {
     code?: number
     data?: string
-    date?: string
     message?: string
   }
 
   type BaseResponseUser_ = {
     code?: number
     data?: User
-    date?: User
     message?: string
   }
 
   type BaseResponseUserVO_ = {
     code?: number
     data?: UserVO
-    date?: UserVO
     message?: string
   }
 
@@ -158,6 +146,8 @@ declare namespace API {
     /** id */
     id?: number
   }
+
+  type ImageSearchResult = true
 
   type LoginUserVO = {
     createTime?: string
@@ -247,6 +237,7 @@ declare namespace API {
   type PictureQueryRequest = {
     category?: string
     current?: number
+    endEditTime?: string
     id?: number
     introduction?: string
     name?: string
@@ -265,6 +256,7 @@ declare namespace API {
     sortField?: string
     sortOrder?: string
     spaceId?: number
+    startEditTime?: string
     tags?: string[]
     userId?: number
   }
@@ -322,6 +314,10 @@ declare namespace API {
     url?: string
     user?: UserVO
     userId?: number
+  }
+
+  type SearchPictureByPictureRequest = {
+    pictureId?: number
   }
 
   type Space = {
