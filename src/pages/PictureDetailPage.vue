@@ -64,6 +64,18 @@
             </a-descriptions-item>
           </a-descriptions>
           <a-space wrap>
+            <a-button type="primary" @click="doDownload">
+              免费下载
+              <template #icon>
+                <DownloadOutlined />
+              </template>
+            </a-button>
+            <a-button type="primary" ghost @click="doShare">
+              分享
+              <template #icon>
+                <share-alt-outlined />
+              </template>
+            </a-button>
             <a-button v-if="canEdit" type="default" @click="doEdit">
               编辑
               <template #icon>
@@ -76,26 +88,22 @@
                 <DeleteOutlined />
               </template>
             </a-button>
-            <a-button type="primary" @click="doDownload">
-              免费下载
-              <template #icon>
-                <DownloadOutlined />
-              </template>
-            </a-button>
           </a-space>
         </a-card>
       </a-col>
     </a-row>
-
+    <ShareModel ref="shareModalRef" :link="shareLink" />
   </div>
 </template>
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { deletePictureUsingPost, getPictureVoByIdUsingGet } from '@/api/pictureController'
 import { message } from 'ant-design-vue'
+import { EditOutlined, DeleteOutlined, DownloadOutlined, ShareAltOutlined } from '@ant-design/icons-vue'
 import { downloadImage, formatSize, toHexColor } from '@/utils'
 import { useLoginUserStore } from '@/stores/useLoginUserStore'
 import router from '@/router'
+import ShareModel from '@/components/ShareModel.vue'
 
 const props = defineProps<{
   id: string | number
@@ -147,6 +155,19 @@ const doDelete = async () => {
     message.success('删除成功')
   } else {
     message.error('删除失败')
+  }
+}
+
+// 分享弹窗引用
+const shareModalRef = ref()
+// 分享链接
+const shareLink = ref<string>()
+
+// 分享
+const doShare = () => {
+  shareLink.value = `${window.location.protocol}//${window.location.host}/picture/${picture.value.id}`
+  if (shareModalRef.value) {
+    shareModalRef.value.openModal()
   }
 }
 

@@ -12,7 +12,7 @@
       </a-layout>
       <a-layout-footer class="footer">
         <a href="https://github.com/QWQHF" target="_blank">
-          hf
+          QWQHF
         </a>
       </a-layout-footer>
     </a-layout>
@@ -55,7 +55,7 @@ export default defineComponent({
 
 #basicLayout .footer {
   background: #efefef;
-  padding: 20px;
+  padding: 10px;
   bottom: 0;
   position: fixed;
   left: 0;
