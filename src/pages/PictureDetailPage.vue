@@ -1,6 +1,5 @@
-
 <template>
-  <div id = "pictureDetailPage">
+  <div id="pictureDetailPage">
     <a-row :gutter="[16, 16]">
       <!-- 图片展示区 -->
       <a-col :sm="24" :md="16" :xl="18">
@@ -50,6 +49,19 @@
             <a-descriptions-item label="大小">
               {{ formatSize(picture.picSize) }}
             </a-descriptions-item>
+            <a-descriptions-item label="主色调">
+              <a-space>
+                {{ picture.picColor ?? '-' }}
+                <div
+                  v-if="picture.picColor"
+                  :style="{
+                    backgroundColor: toHexColor(picture.picColor),
+                    width: '16px',
+                    height: '16px',
+                    }"
+                />
+              </a-space>
+            </a-descriptions-item>
           </a-descriptions>
           <a-space wrap>
             <a-button v-if="canEdit" type="default" @click="doEdit">
@@ -81,7 +93,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { deletePictureUsingPost, getPictureVoByIdUsingGet } from '@/api/pictureController'
 import { message } from 'ant-design-vue'
-import { downloadImage, formatSize } from '@/utils'
+import { downloadImage, formatSize, toHexColor } from '@/utils'
 import { useLoginUserStore } from '@/stores/useLoginUserStore'
 import router from '@/router'
 
@@ -94,7 +106,7 @@ const picture = ref<API.PictureVO>({})
 const fetchPictureDetail = async () => {
   try {
     const res = await getPictureVoByIdUsingGet({
-      id: props.id,
+      id: props.id
     })
     if (res.data.code === 0 && res.data.data) {
       picture.value = res.data.data
@@ -109,7 +121,7 @@ const fetchPictureDetail = async () => {
 const loginUserStore = useLoginUserStore()
 // 是否具有编辑权限
 const canEdit = computed(() => {
-  const loginUser = loginUserStore.loginUser;
+  const loginUser = loginUserStore.loginUser
   // 未登录不可编辑
   if (!loginUser.id) {
     return false
@@ -118,7 +130,6 @@ const canEdit = computed(() => {
   const user = picture.value.user || {}
   return loginUser.id === user.id || loginUser.userRole === 'admin'
 })
-
 
 
 // 编辑
