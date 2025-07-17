@@ -92,7 +92,7 @@
         </a-card>
       </a-col>
     </a-row>
-    <ShareModel ref="shareModalRef" :link="shareLink" />
+    <ShareModal ref="shareModalRef" :link="shareLink" />
   </div>
 </template>
 <script setup lang="ts">
@@ -103,7 +103,7 @@ import { EditOutlined, DeleteOutlined, DownloadOutlined, ShareAltOutlined } from
 import { downloadImage, formatSize, toHexColor } from '@/utils'
 import { useLoginUserStore } from '@/stores/useLoginUserStore'
 import router from '@/router'
-import ShareModel from '@/components/ShareModel.vue'
+import ShareModal from '@/components/ShareModal.vue'
 
 const props = defineProps<{
   id: string | number

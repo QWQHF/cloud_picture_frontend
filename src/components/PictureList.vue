@@ -40,7 +40,7 @@
         </a-list-item>
       </template>
     </a-list>
-    <ShareModel ref="shareModalRef" :link="shareLink" />
+    <ShareModal ref="shareModalRef" :link="shareLink" />
   </div>
 </template>
 
@@ -50,7 +50,7 @@ import { EditOutlined, DeleteOutlined, SearchOutlined, ShareAltOutlined } from '
 import { deletePictureUsingPost } from '@/api/pictureController'
 import { message } from 'ant-design-vue'
 import { ref } from 'vue'
-import ShareModel from '@/components/ShareModel.vue'
+import ShareModal from '@/components/ShareModal.vue'
 
 interface Props {
   dataList?: API.PictureVO[]
