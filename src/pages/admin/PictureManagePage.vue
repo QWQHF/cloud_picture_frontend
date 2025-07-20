@@ -102,7 +102,7 @@
             >
               拒绝
             </a-button>
-            <a-button type="link" danger @click="doDelete(record.id)"> 删除</a-button>
+            <a-button danger @click="doDelete(record.id)"> 删除</a-button>
           </a-space>
         </template>
       </template>

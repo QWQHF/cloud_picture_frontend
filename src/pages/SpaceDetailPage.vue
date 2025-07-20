@@ -3,8 +3,18 @@
   <a-flex justify="space-between">
     <h2>{{ space.spaceName }}（私有空间）</h2>
     <a-space size="middle">
-      <a-button type="primary" :href="`/add_picture?spaceId=${id}`" target="_blank">
+      <a-button
+        type="primary"
+        :href="`/add_picture?spaceId=${id}`"
+        target="_blank">
         + 创建图片
+      </a-button>
+      <a-button
+        type="primary"
+        ghost :icon="h(BarChartOutlined)"
+        :href="`/space_analyze?spaceId=${id}`"
+        target="_blank">
+        空间分析
       </a-button>
       <a-button :icon="h(EditOutlined)" @click="doBatchEdit"> 批量编辑</a-button>
       <a-tooltip
@@ -53,9 +63,9 @@ import { formatSize } from '@/utils'
 import PictureList from '@/components/PictureList.vue'
 import PictureSearchForm from '@/components/PictureSearchForm.vue'
 import { ColorPicker } from 'vue3-colorpicker'
-import "vue3-colorpicker/style.css";
+import 'vue3-colorpicker/style.css'
 import BatchEditPictureModal from '@/components/BatchEditPictureModal.vue'
-import { EditOutlined } from '@ant-design/icons-vue'
+import { EditOutlined, BarChartOutlined } from '@ant-design/icons-vue'
 
 const props = defineProps<{
   id: string | number
@@ -92,7 +102,7 @@ const searchParams = ref<API.PictureQueryRequest>({
   current: 1,
   pageSize: 12,
   sortField: 'createTime',
-  sortOrder: 'descend',
+  sortOrder: 'descend'
 })
 
 // 分页参数
@@ -107,7 +117,7 @@ const onSearch = (newSearchParams: API.PictureQueryRequest) => {
   searchParams.value = {
     ...searchParams.value,
     ...newSearchParams,
-    current: 1,
+    current: 1
   }
   fetchData()
 }
@@ -118,7 +128,7 @@ const fetchData = async () => {
   // 转换搜索参数
   const params = {
     spaceId: props.id,
-    ...searchParams.value,
+    ...searchParams.value
   }
   const res = await listPictureVoByPageUsingPost(params)
   if (res.data.data) {
@@ -133,12 +143,12 @@ const fetchData = async () => {
 const onColorChange = async (color: string) => {
   const res = await searchPictureByColorUsingPost({
     picColor: color,
-    spaceId: props.id,
+    spaceId: props.id
   })
   if (res.data.code === 0 && res.data.data) {
-    const data = res.data.data ?? [];
-    dataList.value = data;
-    total.value = data.length;
+    const data = res.data.data ?? []
+    dataList.value = data
+    total.value = data.length
   } else {
     message.error('获取数据失败，' + res.data.message)
   }
@@ -166,7 +176,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.picture-search-form .ant-form-item{
+.picture-search-form .ant-form-item {
   margin-top: 16px;
 }
 </style>
