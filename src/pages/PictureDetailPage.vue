@@ -76,13 +76,13 @@
                 <share-alt-outlined />
               </template>
             </a-button>
-            <a-button v-if="canEdit" type="default" @click="doEdit">
+            <a-button v-if="canEditPicture" type="default" @click="doEdit">
               编辑
               <template #icon>
                 <EditOutlined />
               </template>
             </a-button>
-            <a-button v-if="canEdit" danger @click="doDelete">
+            <a-button v-if="canDeletePicture" danger @click="doDelete">
               删除
               <template #icon>
                 <DeleteOutlined />
@@ -104,11 +104,23 @@ import { downloadImage, formatSize, toHexColor } from '@/utils'
 import { useLoginUserStore } from '@/stores/useLoginUserStore'
 import router from '@/router'
 import ShareModal from '@/components/ShareModal.vue'
+import { SPACE_PERMISSION_ENUM } from '@/constants/space'
 
 const props = defineProps<{
   id: string | number
 }>()
 const picture = ref<API.PictureVO>({})
+
+// 通用权限检查函数
+function createPermissionChecker(permission: string) {
+  return computed(() => {
+    return (picture.value.permissionList ?? []).includes(permission)
+  })
+}
+
+// 定义权限检查
+const canEditPicture = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_EDIT)
+const canDeletePicture = createPermissionChecker(SPACE_PERMISSION_ENUM.PICTURE_DELETE)
 
 // 获取图片详情
 const fetchPictureDetail = async () => {
