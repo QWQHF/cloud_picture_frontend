@@ -24,7 +24,7 @@
           { min: 8, message: '确认密码不能小于 8 位' },
         ]"
       >
-        <a-input-password v-model:value="formState.userPassword" placeholder="请输入确认密码" />
+        <a-input-password v-model:value="formState.checkPassword" placeholder="请输入确认密码" />
       </a-form-item>
 
       <div class="tips">
